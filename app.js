@@ -1,3 +1,22 @@
+// ── Theme toggle ──
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon   = document.getElementById('themeIcon');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  themeIcon.className = theme === 'light'
+    ? 'fa-solid fa-sun'   // in light mode, show moon to go dark
+    : 'fa-solid fa-moon';   // in dark mode, show sun to go light
+  localStorage.setItem('theme', theme);
+}
+
+// Load saved preference
+applyTheme(localStorage.getItem('theme') || 'dark');
+
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  applyTheme(current === 'light' ? 'dark' : 'light');
+});
 // ── Navbar glass on scroll ──
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
