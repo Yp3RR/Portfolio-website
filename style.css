@@ -210,15 +210,20 @@ body {
 
 /* Name */
 .hname {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Georgia', sans-serif;
   font-weight: 800;
   font-size: clamp(58px, 7.8vw, 98px);
   line-height: 0.9;
   letter-spacing: -0.03em;
   display: flex; flex-direction: column;
 }
-.nfirst { color: var(--text); display: block; }
-.nlast  { color: var(--text); display: block; }
+.intro {
+  font-size: clamp(42px, 5.8vw, 68px);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  display: block;
+  color: var(--text);
+}
 .ndot   { color: var(--purple-l); }
 
 /* Role / typewriter */
