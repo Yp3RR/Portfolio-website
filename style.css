@@ -8,11 +8,11 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
 /* ── Variables ── */
 :root {
-  --bg:       #06061a;
-  --purple:   #7c3aed;
-  --purple-h: #6d28d9;
-  --purple-l: #a78bfa;
-  --indigo:   #4338ca;
+  --bg:       #040d1a;
+  --purple:   #06b6d4;
+  --purple-h: #0891b2;
+  --purple-l: #67e8f9;
+  --indigo:   #0ea5e9;
   --text:     #e2e8f0;
   --muted:    #64748b;
   --muted-l:  #94a3b8;
@@ -21,6 +21,19 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   --orbit-r:  175px;
   --orb-w:    230px;
   --scene-w:  430px;
+}
+
+/* ── Light mode (blue bg + mint) ── */
+[data-theme="light"] {
+  --bg:       #0284c7;
+  --purple:   #34d399;
+  --purple-h: #10b981;
+  --purple-l: #6ee7b7;
+  --indigo:   #059669;
+  --text:     #e2f4f0;
+  --muted:    #ffffffd9;
+  --muted-l:  #ffffffa6;
+  --border:   rgba(255,255,255,0.09);
 }
 
 body {
@@ -42,16 +55,20 @@ body {
 }
 .ab-1 {
   width: 700px; height: 550px;
-  background: var(--purple); opacity: 0.09;
+  background: #06b6d4; opacity: 0.09;
   top: -180px; left: -180px;
   animation: adrift 24s ease-in-out infinite alternate;
 }
 .ab-2 {
   width: 550px; height: 550px;
-  background: var(--indigo); opacity: 0.07;
+  background: #0ea5e9; opacity: 0.07;
   bottom: -160px; right: -160px;
   animation: adrift 18s ease-in-out infinite alternate-reverse;
 }
+
+[data-theme="light"] .ab-1 { background: #34d399; }
+[data-theme="light"] .ab-2 { background: #059669; }
+
 @keyframes adrift {
   from { transform: translate(0,0); }
   to   { transform: translate(40px,25px); }
@@ -74,6 +91,25 @@ body {
   max-width: 1180px; margin: 0 auto;
   height: var(--nav-h); padding: 0 36px;
   display: flex; align-items: center; gap: 32px;
+}
+
+/*toggle button*/
+.theme-toggle {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background .2s, border-color .2s, transform .2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--purple-l);
+  transform: rotate(15deg);
 }
 
 /* Logo */
@@ -176,31 +212,6 @@ body {
 
 /* Left column */
 .hl { display: flex; flex-direction: column; gap: 22px; }
-
-/* Available badge */
-.avail {
-  display: inline-flex; align-items: center; gap: 9px;
-  border: 1px solid rgba(74,222,128,0.18);
-  background: rgba(74,222,128,0.05);
-  color: #86efac;
-  font-size: 0.77rem; font-weight: 500;
-  padding: 5px 14px; border-radius: 999px;
-  width: fit-content;
-}
-.pdot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: #4ade80; flex-shrink: 0; position: relative;
-}
-.pdot::after {
-  content: ''; position: absolute; inset: -4px;
-  border-radius: 50%;
-  background: rgba(74,222,128,0.3);
-  animation: pls 2.2s ease-out infinite;
-}
-@keyframes pls {
-  0%   { transform: scale(.5); opacity: 1; }
-  100% { transform: scale(2.4); opacity: 0; }
-}
 
 /* Intro */
 .hintro {
@@ -308,7 +319,7 @@ body {
 }
 .oglow {
   position: absolute; inset: -36px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(109,40,217,0.3) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(6,182,212,0.28) 0%, transparent 65%);
   animation: oglow 4.5s ease-in-out infinite;
 }
 @keyframes oglow {
@@ -320,15 +331,15 @@ body {
   background: radial-gradient(
     circle at 36% 30%,
     rgba(255,255,255,0.18) 0%,
-    rgba(167,139,250,.88) 20%,
-    rgba(109,40,217,.96) 50%,
-    rgba(16,8,48,1) 100%
+    rgba(103,232,249,.85) 20%,
+    rgba(8,145,178,.95) 50%,
+    rgba(4,13,26,1) 100%
   );
   box-shadow:
-    0 0 0 1px rgba(167,139,250,.12),
-    0 0 24px rgba(124,58,237,.5),
-    0 0 56px rgba(124,58,237,.2),
-    0 0 100px rgba(124,58,237,.07),
+    0 0 0 1px rgba(103,232,249,.12),
+    0 0 24px rgba(6,182,212,.5),
+    0 0 56px rgba(6,182,212,.2),
+    0 0 100px rgba(6,182,212,.07),
     inset 0 0 32px rgba(0,0,0,.5);
 }
 .oshine {
@@ -339,6 +350,26 @@ body {
   background: radial-gradient(ellipse, rgba(255,255,255,.22) 0%, transparent 70%);
   transform: rotate(-30deg);
   pointer-events: none;
+}
+
+/* Orb — light theme override */
+[data-theme="light"] .obody {
+  background: radial-gradient(
+    circle at 36% 30%,
+    rgba(255,255,255,0.18) 0%,
+    rgba(110,231,183,.85) 20%,
+    rgba(16,185,129,.95) 50%,
+    rgba(10,31,58,1) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(110,231,183,.12),
+    0 0 24px rgba(52,211,153,.5),
+    0 0 56px rgba(52,211,153,.2),
+    0 0 100px rgba(52,211,153,.07),
+    inset 0 0 32px rgba(0,0,0,.5);
+}
+[data-theme="light"] .oglow {
+  background: radial-gradient(circle, rgba(52,211,153,0.28) 0%, transparent 65%);
 }
 
 /* ── Orbit Icons ── */
