@@ -1,7 +1,3 @@
-/* ============================================
-   YASH PATIL — PORTFOLIO  |  script.js
-   ============================================ */
-
 // ── Navbar glass on scroll ──
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
